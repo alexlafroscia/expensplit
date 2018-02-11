@@ -1,34 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import styled, { keyframes } from 'react-emotion';
+import styled from 'react-emotion';
+import Scrap from './components/Scrap';
+import PersonList from './connected/PersonList';
 
 const Wrapper = styled('div')`
-  text-align: center;
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 900px;
+  padding-left: 1em;
+  padding-right: 1em;
 `;
 
 const Header = styled('header')`
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  display: flex;
   color: white;
 `;
 
-const spin = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
-
-const Logo = styled('img')`
-  animation: ${spin} infinite 20s linear;
-  height: 80px;
-`;
-
 const Title = styled('h1')`
-  font-size: 1.5em;
-`;
-
-const Intro = styled('p')`
-  font-size: large;
+  font-size: 1.2em;
 `;
 
 class App extends Component {
@@ -36,12 +25,11 @@ class App extends Component {
     return (
       <Wrapper>
         <Header>
-          <Logo src={logo} alt="logo" />
-          <Title>Welcome to React</Title>
+          <Title>ExpenSplit</Title>
         </Header>
-        <Intro>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </Intro>
+        <Scrap>
+          <PersonList />
+        </Scrap>
       </Wrapper>
     );
   }

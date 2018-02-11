@@ -26,8 +26,9 @@ module.exports = {
   overrides: [
     {
       files: ['src/**/*.test.js'],
+      plugins: ['jest'],
       env: {
-        mocha: true
+        'jest/globals': true
       }
     }
   ]
