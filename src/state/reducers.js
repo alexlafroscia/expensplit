@@ -1,4 +1,4 @@
-import { ADD_PERSON } from './actions';
+import { ADD_PERSON, CHANGE_PERSON_NAME, REMOVE_PERSON } from './actions';
 
 const initialState = {
   people: [{ id: 1, name: 'Alex' }]
@@ -26,7 +26,39 @@ export default function app(state = initialState, action) {
           }
         ]
       });
+    case CHANGE_PERSON_NAME:
+      return Object.assign({}, state, {
+        people: state.people.map(person => {
+          if (person.id === action.id) {
+            return Object.assign({}, person, { name: action.name });
+          }
+
+          return person;
+        })
+      });
+    case REMOVE_PERSON:
+      return Object.assign({}, state, {
+        people: state.people.reduce((acc, person) => {
+          if (person.id !== action.id) {
+            acc.push(person);
+          }
+
+          return acc;
+        }, [])
+      });
     default:
       return state;
   }
+}
+
+export function persistedApp() {
+  const state = app(...arguments);
+
+  localStorage.setItem('app-state', JSON.stringify(state));
+
+  return state;
+}
+
+export function getPersistedState() {
+  return JSON.parse(localStorage.getItem('app-state'));
 }

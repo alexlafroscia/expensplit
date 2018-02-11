@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import Person from './Person';
 import Input from '../elements/Input';
 
 const Header = styled('header')`
@@ -12,18 +13,13 @@ const NewPersonButton = styled('button')`
   margin-left: 1em;
 `;
 
+const List = styled('ul')`
+  padding-left: 0;
+`;
+
 const StyledInput = styled(Input)`
   margin-left: 1em;
 `;
-
-export function Person({ person }) {
-  return <li>{person.name}</li>;
-}
-Person.propTypes = {
-  person: PropTypes.shape({
-    name: PropTypes.string
-  })
-};
 
 export default class PersonList extends Component {
   constructor() {
@@ -72,7 +68,7 @@ export default class PersonList extends Component {
   }
 
   render() {
-    const { people } = this.props;
+    const { people, PersonClass = Person } = this.props;
     const { newPersonInputVisible, newPersonName } = this.state;
 
     return (
@@ -97,14 +93,17 @@ export default class PersonList extends Component {
             </NewPersonButton>
           )}
         </Header>
-        <ul>
-          {people.map(person => <Person key={person.id} person={person} />)}
-        </ul>
+        <List>
+          {people.map(person => (
+            <PersonClass key={person.id} person={person} />
+          ))}
+        </List>
       </Fragment>
     );
   }
 }
 PersonList.propTypes = {
+  PersonClass: PropTypes.func,
   people: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

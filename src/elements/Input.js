@@ -38,6 +38,11 @@ export default class Input extends Component {
         autoFocus={this.props.autoFocus}
         defaultValue={this.props.value}
         onKeyUp={this.handleKeyUp}
+        onFocus={e => {
+          const { value } = e.target;
+          e.target.value = '';
+          e.target.value = value;
+        }}
       />
     );
   }

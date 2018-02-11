@@ -4,12 +4,12 @@ import App from './App';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import app from './state/reducers';
+import { persistedApp, getPersistedState } from './state/reducers';
 
 import { injectGlobal } from 'emotion';
 import { blue } from './theme';
 
-const store = createStore(app);
+const store = createStore(persistedApp, getPersistedState());
 
 injectGlobal`
   body {
