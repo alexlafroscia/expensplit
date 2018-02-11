@@ -21,6 +21,12 @@ const StyledInput = styled(Input)`
   margin-left: 1em;
 `;
 
+const EmptyListText = styled('div')`
+  color: grey;
+  font-size: 1.2em;
+  text-align: center;
+`;
+
 export default class PersonList extends Component {
   constructor() {
     super();
@@ -94,9 +100,13 @@ export default class PersonList extends Component {
           )}
         </Header>
         <List>
-          {people.map(person => (
-            <PersonClass key={person.id} person={person} />
-          ))}
+          {people.length ? (
+            people.map(person => (
+              <PersonClass key={person.id} person={person} />
+            ))
+          ) : (
+            <EmptyListText>Add a person to get started</EmptyListText>
+          )}
         </List>
       </Fragment>
     );

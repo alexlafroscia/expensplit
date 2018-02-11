@@ -60,5 +60,13 @@ export function persistedApp() {
 }
 
 export function getPersistedState() {
-  return JSON.parse(localStorage.getItem('app-state'));
+  const initialState = localStorage.getItem('app-state');
+
+  if (initialState) {
+    return JSON.parse(initialState);
+  }
+
+  return {
+    people: []
+  };
 }
