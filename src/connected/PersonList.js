@@ -1,7 +1,7 @@
 import PersonList from '../components/PersonList';
 import ConnectedPerson from './Person';
 import { connect } from 'react-redux';
-import { addPerson } from '../state/actions';
+import { addPerson } from '../state/people';
 
 const mapStateToProps = ({ people }) => {
   return {

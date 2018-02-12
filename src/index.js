@@ -4,7 +4,7 @@ import App from './App';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { persistedApp, getPersistedState } from './state/reducers';
+import { persistedApp, getPersistedState } from './state';
 
 import { injectGlobal } from 'emotion';
 import { blue } from './theme';

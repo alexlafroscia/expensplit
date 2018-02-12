@@ -1,6 +1,6 @@
 import Person from '../components/Person';
 import { connect } from 'react-redux';
-import { changePersonName, removePerson } from '../state/actions';
+import { changePersonName, removePerson } from '../state/people';
 
 function mapStateToProps() {
   return {};
